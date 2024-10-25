@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+</head>
+<body>
+    <nav>
+        <div class="logo">Markas Agricart <i class="fas fa-leaf"></i></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+           <button id="logout-btn" style="border: none; background: none; cursor: pointer; color: #e9edf2; font-size: 16px;">Logout</button>
+        </div>
+    </nav>
+    
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2>Categories of Products</h2>
+        <div class="category-container">
+            <!-- First Product -->
+            <div class="category-item" style="background-image: url('sspic.jpg');">
+                <div class="category-text">
+                    <h3>Machinery Rentals Available</h3>
+                    <p>Explore our wide range of rental equipment options.</p>
+                    <a href="rent.html"><button class="category-btn">Rent Now</button></a>
+                </div>
+            </div>
+
+            <!-- Second Product -->
+            <div class="category-item" style="background-image: url('farm tool.jpg');">
+                <div class="category-text">
+                    <h3>Equipment & Tools Sales Online</h3>
+                    <p>Discover top-quality machinery for your agricultural needs.</p>
+                    <a href="buy.html"><button class="category-btn">Shop tools Now</button></a>
+                </div>
+            </div>
+
+            <!-- Third Product -->
+            <div class="category-item" style="background-image: url('pic mac1.jpg');">
+                <div class="category-text">
+                    <h3>Service Solutions</h3>
+                    <p>Get expert services for all your equipment needs.</p>
+                    <a href="services.html"><button class="category-btn">Avail Now</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="category-item" style="background-image: url('plant1.jpg');">
+            <div class="category-text">
+                <h3>Indoor plants</h3>
+                <p>Get the best indoor and feel the fresh air</p>
+                <a href="plant.html"><button class="category-btn">Shop Now</button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <h2>All Products</h2>
+        <div class="product-container">
+            <div class="product-item">
+                <img src="pic2.jpg" alt="Tractor">
+                <div class="product-info">
+                    <h3>Tractor</h3>
+                    <p class="price">$10,000</p>
+                    <p>New arrivals</p>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="farm tool.jpg" alt="Farm Tool">
+                <div class="product-info">
+                    <h3>Farm Tool</h3>
+                    <p class="price">$2,500</p>
+                    <p>Hot Sale</p>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="sspic.jpg" alt="Service Solutions">
+                <div class="product-info">
+                    <h3>Service Solutions</h3>
+                    <p class="price">$500</p>
+                    <p>Few Products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Feedback Section -->
+    <section class="feedback">
+        <h2>Customer Feedback</h2>
+        <div class="feedback-container">
+            <div class="feedback-item">
+                <div class="profile-icon"></div>
+                <h3>John Doe</h3>
+                <div class="rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <p>"Great service and quality products!"</p>
+            </div>
+            <div class="feedback-item">
+                <div class="profile-icon"></div>
+                <h3>Jane Smith</h3>
+                <div class="rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p>"Fast delivery and excellent customer support!"</p>
+            </div>
+            <div class="feedback-item">
+                <div class="profile-icon"></div>
+                <h3>David Lee</h3>
+                <div class="rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <p>"I highly recommend Agricart for all your farming needs!"</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <h3>Connect with Us</h3>
+        <p>Phone: 9967435357 | 9453234981</p>
+        <p>Email: markasagricart@gmail.com</p>
+    </footer>
+    <script>
+        $(document).ready(function() {
+            // Check if the user is logged in
+            const token = localStorage.getItem('token');
+
+            // If there's no token, redirect to login page
+            if (!token) {
+                window.location.href = 'login.html';
+            }
+
+            // Logout function
+            $('#logout-btn').click(function() {
+                localStorage.removeItem('token'); // Remove token
+                alert('You have been logged out.');
+                window.location.href = 'login.html'; // Redirect to login page
+            });
+        });
+    </script>
+</body>
+</html>
+
