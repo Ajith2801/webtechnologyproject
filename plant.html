@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Indoor Plants</title>
+    <link rel="stylesheet" href="plant.css">
+    <script>
+        let cartCount = 0;
+        let cartItems = [];
+
+        function redirectToPayment() {
+            window.location.href = "payment.html"; // Replace with the actual payment page URL
+        }
+
+        function addToCart(productName) {
+            cartCount++; // Increment the cart count
+            cartItems.push(productName); // Add the product to the cartItems array
+            alert(productName + " has been added to the cart!");
+            const cartIcon = document.getElementById("cart-icon");
+            cartIcon.style.display = "flex"; // Show the cart icon
+            cartIcon.textContent = cartCount; // Update the cart count displayed
+        }
+
+        function showCartItems() {
+            const cartModal = document.getElementById("cart-modal");
+            const cartList = document.getElementById("cart-items-list");
+
+            // Clear the previous cart list
+            cartList.innerHTML = "";
+
+            // Add items from the cartItems array
+            cartItems.forEach(item => {
+                const listItem = document.createElement("li");
+                listItem.textContent = item;
+                cartList.appendChild(listItem);
+            });
+
+            cartModal.style.display = "block"; // Show the cart modal
+        }
+
+        function closeCart() {
+            const cartModal = document.getElementById("cart-modal");
+            cartModal.style.display = "none"; // Hide the cart modal
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Buy Indoor Plants</h2>
+    
+    <!-- Cart Icon -->
+    <div id="cart-icon" onclick="showCartItems()">0</div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal">
+        <h2>Cart Items</h2>
+        <ul id="cart-items-list"></ul>
+        <button id="close-cart" onclick="closeCart()">Close</button>
+    </div>
+
+    <div class="product-container">
+        <!-- First Item -->
+        <div class="product-item">
+            <img src="bamboo.jpeg" alt="Bamboo Plant">
+            <div class="product-info">
+                <h3>Bamboo Plant</h3>
+                <p>Beautiful indoor bamboo plant to enhance your living space.</p>
+                <p class="product-price">$150</p>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="redirectToPayment()">Buy Now</button>
+                    <button class="cart-btn" onclick="addToCart('Bamboo Plant')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Item -->
+        <div class="product-item">
+            <img src="monestra 2.jpg" alt="Monstera Plant">
+            <div class="product-info">
+                <h3>Monstera Plant</h3>
+                <p>Popular indoor plant with large, beautiful leaves.</p>
+                <p class="product-price">$550</p>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="redirectToPayment()">Buy Now</button>
+                    <button class="cart-btn" onclick="addToCart('Monstera Plant')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Item -->
+        <div class="product-item">
+            <img src="money plant.jpg" alt="Money Plant">
+            <div class="product-info">
+                <h3>Money Plant</h3>
+                <p>Easy-to-care-for indoor plant with lush green foliage.</p>
+                <p class="product-price">$350</p>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="redirectToPayment()">Buy Now</button>
+                    <button class="cart-btn" onclick="addToCart('Money Plant')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
