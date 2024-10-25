@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Products - Agricart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .product-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .product-item {
+            display: flex;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            gap: 20px;
+        }
+
+        .product-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-info h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .product-info p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: green;
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .buy-btn, .cart-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            background-color: #28a745;
+        }
+
+        .buy-btn:hover {
+            background-color: #218838;
+        }
+
+        .cart-btn {
+            background-color: #ff6b6b;
+        }
+
+        .cart-btn:hover {
+            background-color: #e65c5c;
+        }
+
+        /* Cart Icon */
+        #cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #28a745;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 1000;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Cart Modal */
+        #cart-modal {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+            width: 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 2000;
+        }
+
+        #cart-modal h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        #cart-modal ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        #cart-modal ul li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        #close-cart {
+            padding: 10px 15px;
+            background-color: #e65c5c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
+        #close-cart:hover {
+            background-color: #ff6b6b;
+        }
+    </style>
+    <script>
+        let cartCount = 0;
+        let cartItems = [];
+
+        function redirectToPayment() {
+            window.location.href = "payment.html"; // Replace with the actual payment page URL
+        }
+
+        function addToCart(productName) {
+            cartCount++; // Increment the cart count
+            cartItems.push(productName); // Add the product to the cartItems array
+            alert(productName + " has been added to the cart!");
+            const cartIcon = document.getElementById("cart-icon");
+            cartIcon.style.display = "flex"; // Show the cart icon
+            cartIcon.textContent = cartCount; // Update the cart count displayed
+        }
+
+        function showCartItems() {
+            const cartModal = document.getElementById("cart-modal");
+            const cartList = document.getElementById("cart-items-list");
+
+            // Clear the previous cart list
+            cartList.innerHTML = "";
+
+            // Add items from the cartItems array
+            cartItems.forEach(item => {
+                const listItem = document.createElement("li");
+                listItem.textContent = item;
+                cartList.appendChild(listItem);
+            });
+
+            cartModal.style.display = "block"; // Show the cart modal
+        }
+
+        function closeCart() {
+            const cartModal = document.getElementById("cart-modal");
+            cartModal.style.display = "none"; // Hide the cart modal
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Buy Products</h2>
+    
+    <!-- Cart Icon -->
+    <div id="cart-icon" onclick="showCartItems()">0</div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal">
+        <h2>Cart Items</h2>
+        <ul id="cart-items-list"></ul>
+        <button id="close-cart" onclick="closeCart()">Close</button>
+    </div>
+
+    <div class="product-container">
+        <!-- First Item -->
+        <div class="product-item">
+            <img src="t1.jpg" alt="Garden Tools">
+            <div class="product-info">
+                <h3>Garden Tools</h3>
+                <p>High-performance tools for agricultural needs.</p>
+                <p class="product-price">$10,000</p>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="redirectToPayment()">Buy Now</button>
+                    <button class="cart-btn" onclick="addToCart('Garden Tools')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Item -->
+        <div class="product-item">
+            <img src="t2.jpg" alt="Plow">
+            <div class="product-info">
+                <h3>Plow and Cutter</h3>
+                <p>Efficient plows for soil preparation and farming tasks.</p>
+                <p class="product-price">$500</p>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="redirectToPayment()">Buy Now</button>
+                    <button class="cart-btn" onclick="addToCart('Plow and Cutter')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Item -->
+        <div class="product-item">
+            <img src="pic2.jpg" alt="Combine Harvester">
+            <div class="product-info">
+                <h3>Harvester</h3>
+                <p>Powerful harvesters for efficient crop harvesting.</p>
+                <p class="product-price">$100,000</p>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="redirectToPayment()">Buy Now</button>
+                    <button class="cart-btn" onclick="addToCart('Harvester')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fourth Item -->
+        <div class="product-item">
+            <img src="tool water.jpg" alt="Watering Tool">
+            <div class="product-info">
+                <h3>Watering Tool</h3>
+                <p>Watering to the plants.</p>
+                <p class="product-price">$1,000</p>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="redirectToPayment()">Buy Now</button>
+                    <button class="cart-btn" onclick="addToCart('Watering Tool')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fifth Item -->
+        <div class="product-item">
+            <img src="edui4.jpg" alt="Sprayer">
+            <div class="product-info">
+                <h3>Sprayer</h3>
+                <p>High-capacity sprayers for efficient crop spraying.</p>
+                <p class="product-price">$2,500</p>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="redirectToPayment()">Buy Now</button>
+                    <button class="cart-btn" onclick="addToCart('Sprayer')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sixth Item -->
+        <div class="product-item">
+            <img src="combine.jpg" alt="Tractor">
+            <div class="product-info">
+                <h3>Tractor</h3>
+                <p>Durable and powerful tractors for large-scale farming.</p>
+                <p class="product-price">$50,000</p>
+                <div class="product-actions">
+                    <button class="buy-btn" onclick="redirectToPayment()">Buy Now</button>
+                    <button class="cart-btn" onclick="addToCart('Tractor')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more products as needed -->
+    </div>
+
+</body>
+</html>
